@@ -1,11 +1,14 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import phonebookActions from '../../redux/phonebook/phonebook-actions';
 import shortid from 'shortid';
-import PropTypes from 'prop-types';
 import s from '../ContactForm/ContactForm.module.css';
 
-const Filter = ({ value, changeFilter }) => {
+const Filter = () => {
+  const dispatch = useDispatch();
+
+  const value = useSelector(state => state.phonebook.filter);
+
   return (
     <div className={s.InputWrapper}>
       <label className={s.Label} htmlFor={shortid.generate()}>
@@ -16,24 +19,12 @@ const Filter = ({ value, changeFilter }) => {
         value={value}
         id={shortid.generate()}
         className={s.Input}
-        onChange={changeFilter}
+        onChange={e =>
+          dispatch(phonebookActions.changeFilter(e.currentTarget.value))
+        }
       />
     </div>
   );
 };
 
-Filter.propTypes = {
-  value: PropTypes.string.isRequired,
-  changeFilter: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = state => ({
-  value: state.phonebook.filter,
-});
-
-const mapDispatchToProps = dispatch => ({
-  changeFilter: e =>
-    dispatch(phonebookActions.changeFilter(e.currentTarget.value)),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Filter);
+export default Filter;

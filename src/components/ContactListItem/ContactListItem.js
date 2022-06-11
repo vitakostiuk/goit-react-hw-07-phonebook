@@ -1,6 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import phonebookActions from '../../redux/phonebook/phonebook-actions';
 import PropTypes from 'prop-types';
 import s from '../ContactList/ContactList.module.css';
 
@@ -27,8 +25,4 @@ ContactListItem.propTypes = {
   onDeleteContact: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = dispatch => ({
-  onDeleteContact: id => dispatch(phonebookActions.deleteContact(id)),
-});
-
-export default connect(null, mapDispatchToProps)(ContactListItem);
+export default ContactListItem;
