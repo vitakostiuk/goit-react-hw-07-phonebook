@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import phonebookActions from '../../redux/phonebook/phonebook-actions';
+import { addContact } from '../../redux/phonebook/phonebook-operations';
 import shortid from 'shortid';
 import s from './ContactForm.module.css';
 
@@ -33,7 +33,7 @@ const ContactForm = () => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    dispatch(phonebookActions.addContact({ name, number }));
+    dispatch(addContact({ name, number }));
 
     setName('');
     setNumber('');

@@ -1,17 +1,29 @@
 import { createAction } from '@reduxjs/toolkit';
-import shortid from 'shortid';
 
-const addContact = createAction('phonebook/add', ({ name, number }) => ({
-  payload: {
-    id: shortid.generate(),
-    name,
-    number,
-  },
-}));
+const getContactRequest = createAction('contacts/getContactRequest');
+const getContactSuccess = createAction('contacts/getContactSuccess');
+const getContactError = createAction('contacts/getContactError');
 
-const deleteContact = createAction('phonebook/delete');
+const addContactRequest = createAction('contacts/addContactRequest');
+const addContactSuccess = createAction('contacts/addContactSuccess');
+const addContactError = createAction('contacts/addContactError');
+
+const deleteContactRequest = createAction('contacts/deleteContactRequest');
+const deleteContactSuccess = createAction('contacts/deleteContactSuccess');
+const deleteContactError = createAction('contacts/deleteContactError');
 
 const changeFilter = createAction('phonebook/changeFilter');
 
 // eslint-disable-next-line import/no-anonymous-default-export
-export default { addContact, deleteContact, changeFilter };
+export {
+  changeFilter,
+  addContactRequest,
+  addContactSuccess,
+  addContactError,
+  deleteContactRequest,
+  deleteContactSuccess,
+  deleteContactError,
+  getContactRequest,
+  getContactSuccess,
+  getContactError,
+};

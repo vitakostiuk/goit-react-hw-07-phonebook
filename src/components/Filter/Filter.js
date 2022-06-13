@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import phonebookActions from '../../redux/phonebook/phonebook-actions';
+import { changeFilter } from '../../redux/phonebook/phonebook-actions';
 import shortid from 'shortid';
 import s from '../ContactForm/ContactForm.module.css';
 
@@ -19,9 +19,7 @@ const Filter = () => {
         value={value}
         id={shortid.generate()}
         className={s.Input}
-        onChange={e =>
-          dispatch(phonebookActions.changeFilter(e.currentTarget.value))
-        }
+        onChange={e => dispatch(changeFilter(e.currentTarget.value))}
       />
     </div>
   );
