@@ -1,3 +1,22 @@
+//---------delete save to local storage------------
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import phonebookReducer from './phonebook/phonebook-reducer';
+import logger from 'redux-logger';
+
+const rootReducer = combineReducers({
+  phonebook: phonebookReducer,
+});
+
+const store = configureStore({
+  reducer: rootReducer,
+  devTools: process.env.NODE_ENV === 'development',
+  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(logger),
+});
+
+export default store;
+//
+//-----with saving to local storage--------------
+//
 // import { configureStore, combineReducers } from '@reduxjs/toolkit';
 // import {
 //   persistStore,
@@ -39,19 +58,3 @@
 // // eslint-disable-next-line import/no-anonymous-default-export
 // export default { store, persistor };
 //
-//---------delete save to local storage------------
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import phonebookReducer from './phonebook/phonebook-reducer';
-import logger from 'redux-logger';
-
-const rootReducer = combineReducers({
-  phonebook: phonebookReducer,
-});
-
-const store = configureStore({
-  reducer: rootReducer,
-  devTools: process.env.NODE_ENV === 'development',
-  middleware: getDefaultMiddleware => getDefaultMiddleware().concat(logger),
-});
-
-export default store;

@@ -14,11 +14,11 @@ const ContactList = () => {
     dispatch(getContacts());
   }, [dispatch]);
 
-  const onDeleteContact = id => dispatch(deleteContact(id));
-
   const contacts = useSelector(state =>
     filteredContacts(state.phonebook.contacts, state.phonebook.filter)
   );
+
+  const onDeleteContact = id => dispatch(deleteContact(id));
 
   return (
     <ul className={s.List}>
